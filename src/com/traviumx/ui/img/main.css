@@ -1,0 +1,35 @@
+
+
+.heroStatusBar .bar {
+        -fx-background-insets: 2 2 3 2;
+        -fx-background-radius: 2;
+        -fx-padding: 0.20em;
+        -fx-background-color: #006900
+}
+
+
+.stockWareHouseBar .bar {
+        -fx-background-insets: 2 2 2 2;
+        -fx-background-radius: 0;
+        -fx-padding: 0.20em;
+        -fx-background-color: #006900;
+
+}
+
+.stockWareHouseBar .track {
+        -fx-background-insets: 1 1 1 1;
+        -fx-background-color: #FFFFFF;
+        -fx-border-color: #888888;
+        -fx-border-insets: 1 1 1 1;
+
+}
+.stockBarWarehouseWrapper {
+        -fx-background-color: #fef7e7;
+        -fx-border-color: #c0a268;
+        -fx-border-radius: 6;
+}
+.stockBar {
+        -fx-background-color: #F6F6F6;
+        -fx-border-color: #747474;
+        -fx-border-radius: 5;
+}

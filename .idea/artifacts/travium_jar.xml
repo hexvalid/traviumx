@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="travium:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/travium_jar</output-path>
+    <root id="archive" name="travium.jar">
+      <element id="module-output" name="traviumx" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../.m2/repository/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../.m2/repository/commons-io/commons-io/2.6/commons-io-2.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../.m2/repository/org/apache/httpcomponents/httpclient/4.5.8/httpclient-4.5.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../.m2/repository/org/apache/httpcomponents/httpcore/4.4.11/httpcore-4.4.11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../.m2/repository/org/jsoup/jsoup/1.8.3/jsoup-1.8.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../.m2/repository/org/msgpack/msgpack/0.6.12/msgpack-0.6.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../.m2/repository/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../.m2/repository/org/javassist/javassist/3.18.1-GA/javassist-3.18.1-GA.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../.m2/repository/org/xerial/sqlite-jdbc/3.27.2.1/sqlite-jdbc-3.27.2.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
