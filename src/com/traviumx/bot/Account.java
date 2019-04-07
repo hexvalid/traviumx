@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.traviumx.Pool;
 import com.traviumx.utils.AntiCaptcha;
 import com.traviumx.utils.Parser;
 import javafx.collections.FXCollections;
@@ -12,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpHeaders;
-import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.CookieSpecs;
@@ -21,12 +19,8 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.conn.ssl.SSLContextBuilder;
-import org.apache.http.conn.ssl.TrustAllStrategy;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.*;
-import org.apache.http.impl.conn.DefaultProxyRoutePlanner;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
@@ -35,11 +29,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import javax.imageio.ImageIO;
 import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -332,6 +322,48 @@ public class Account {
                 this.Villages.add(v);
             }
         }
+
+
+        //village yüklemesi burdan itibaren olacak
+        //for ile itare edilecek. Köy sayısı arttıkça süre uzar
+        //todo: sonradan multi-thread yapılacak
+        for (Village v : Villages) {
+            get = new HttpGet(gameWorld.getUrl() + "dorf1.php" + "?newdid=" + v.id + "&");
+            doc = Jsoup.parse(executeRequest(get));
+
+            v.warehouse = Parser.ParseDotty(doc.select("#stockBarWarehouse.value").first().text());
+
+            v.lumber = Parser.ParseDotty(doc.select("#l1.value").first().text());
+            v.lumberFullness = Double.valueOf(StringUtils.substringBetween(
+                    doc.select("#lbar1.bar").first().attr("style"), "width:", "%")) / 100;
+            v.lumberTooltip = doc.select("#stockBarResource1.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+            v.lumberBoost = doc.select("#stockBarResource1 .productionBoost").size() > 0;
+
+            v.clay = Parser.ParseDotty(doc.select("#l2.value").first().text());
+            v.clayFullness = Double.valueOf(StringUtils.substringBetween(
+                    doc.select("#lbar2.bar").first().attr("style"), "width:", "%")) / 100;
+            v.clayTooltip = doc.select("#stockBarResource2.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+            v.clayBoost = doc.select("#stockBarResource2 .productionBoost").size() > 0;
+
+            v.iron = Parser.ParseDotty(doc.select("#l3.value").first().text());
+            v.ironFullness = Double.valueOf(StringUtils.substringBetween(
+                    doc.select("#lbar3.bar").first().attr("style"), "width:", "%")) / 100;
+            v.ironTooltip = doc.select("#stockBarResource3.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+            v.ironBoost = doc.select("#stockBarResource3 .productionBoost").size() > 0;
+
+            v.granary = Parser.ParseDotty(doc.select("#stockBarGranary.value").first().text());
+
+            v.crop = Parser.ParseDotty(doc.select("#l4.value").first().text());
+            v.cropFullness = Double.valueOf(StringUtils.substringBetween(
+                    doc.select("#lbar4.bar").first().attr("style"), "width:", "%")) / 100;
+            v.cropTooltip = doc.select("#stockBarResource4.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+            v.cropBoost = doc.select("#stockBarResource4 .productionBoost").size() > 0;
+
+            v.freecrop = Parser.ParseDotty(doc.select("#stockBarFreeCrop.value").first().text());
+            v.freecropTooltip = doc.select("#stockBarFreeCropWrapper.stockBarButton a").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+
+        }
+
 
     }
 
