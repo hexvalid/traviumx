@@ -13,6 +13,8 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToolBar?>
@@ -21,7 +23,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -453,26 +458,127 @@
                 </Tab>
                   <Tab closable="false" text="Yağma">
                      <content>
-                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
-                           <children>
-                              <VBox layoutX="482.0" layoutY="14.0" prefHeight="463.0" prefWidth="239.0" spacing="10.0" style="-fx-background-color: #ff0000;">
-                                 <padding>
-                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                 </padding>
-                                 <children>
-                                    <TitledPane text="untitled">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                      </content>
-                                    </TitledPane>
-                                    <TitledPane text="untitled">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                      </content>
-                                    </TitledPane>
-                                 </children>
-                              </VBox>
-                           </children></AnchorPane>
+                        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="Yağmalayıcı">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              </content>
+                            </Tab>
+                            <Tab text="Yağma Listesi Oluşturucu">
+                                 <content>
+                                    <BorderPane>
+                                       <bottom>
+                                          <TableView prefHeight="238.0" prefWidth="710.0" BorderPane.alignment="CENTER">
+                                            <columns>
+                                              <TableColumn prefWidth="75.0" text="C1" />
+                                              <TableColumn prefWidth="75.0" text="C2" />
+                                            </columns>
+                                          </TableView>
+                                       </bottom>
+                                       <left>
+                                          <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="327.0" vgap="10.0" BorderPane.alignment="TOP_RIGHT">
+                                            <columnConstraints>
+                                              <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Yeni Liste Adı:" />
+                                                <TextField GridPane.columnIndex="1" />
+                                                <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Çıkılan Köy: " GridPane.rowIndex="1" />
+                                                <ComboBox fx:id="_villageList1" maxWidth="1.7976931348623157E308" onAction="#updateVillage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Mesafe:" GridPane.rowIndex="2" />
+                                                <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <TextField maxHeight="1.7976931348623157E308" promptText="minimum" />
+                                                      <Label maxHeight="1.7976931348623157E308" text="-" />
+                                                      <TextField maxHeight="1.7976931348623157E308" promptText="maksimum" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                   <children>
+                                                      <TextField maxHeight="1.7976931348623157E308" promptText="minimum" />
+                                                      <Label maxHeight="1.7976931348623157E308" text="-" />
+                                                      <TextField maxHeight="1.7976931348623157E308" promptText="maksimum" />
+                                                   </children>
+                                                </HBox>
+                                                <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nüfus:" GridPane.rowIndex="3" />
+                                             </children>
+                                          </GridPane>
+                                       </left>
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <center>
+                                          <Separator orientation="VERTICAL" prefHeight="200.0" BorderPane.alignment="CENTER" />
+                                       </center>
+                                       <right>
+                                          <VBox maxWidth="1.7976931348623157E308" spacing="10.0" BorderPane.alignment="TOP_RIGHT">
+                                             <children>
+                                                <HBox spacing="10.0">
+                                                   <children>
+                                                      <Label maxHeight="1.7976931348623157E308" text="Irk:" />
+                                                      <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false">
+                                                         <graphic>
+                                                            <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../img/roman.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </CheckBox>
+                                                      <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false">
+                                                         <graphic>
+                                                            <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../img/teuton.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </CheckBox>
+                                                      <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false">
+                                                         <graphic>
+                                                            <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../img/gaul.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </CheckBox>
+                                                      <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false">
+                                                         <graphic>
+                                                            <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../img/egyptian.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </CheckBox>
+                                                      <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false">
+                                                         <graphic>
+                                                            <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../img/hun.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </CheckBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </right>
+                                    </BorderPane>
+                                 </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
                      </content>
                   </Tab>
                   <Tab closable="false" disable="true" text="Gümüş Ticareti">
