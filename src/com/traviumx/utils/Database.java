@@ -19,6 +19,7 @@ public class Database {
     private static final String addAccountQuery = "insert into accounts(id,username,password,gameworld,useragent," +
             "pax,cookies,config,owner,added) values(?,?,?,?,?,?,?,?,?,?)";
     private static final String selectAllAccountsQuery = "select id,username,password,gameworld,useragent,pax,cookies,config from accounts";
+    private static final String updateCookiesQuery = "update accounts set cookies = ? where id = ?";
 
 
     public static void connect() throws SQLException, ClassNotFoundException {
@@ -52,6 +53,16 @@ public class Database {
             pstmt.setString(8, ""); //a.getConfig().toJson()
             pstmt.setString(9, Pool.loggedUser);
             pstmt.setTimestamp(10, new Timestamp(System.currentTimeMillis()));
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+    public static void UpdateCookies(Account a) throws SQLException {
+        try (PreparedStatement pstmt = conn.prepareStatement(updateCookiesQuery)) {
+            pstmt.setString(1, a.getCookiesAsJson());
+            pstmt.setString(2, a.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw e;

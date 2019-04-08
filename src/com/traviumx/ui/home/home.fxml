@@ -467,114 +467,142 @@
                             </Tab>
                             <Tab text="Yağma Listesi Oluşturucu">
                                  <content>
-                                    <BorderPane>
-                                       <bottom>
-                                          <TableView prefHeight="238.0" prefWidth="710.0" BorderPane.alignment="CENTER">
-                                            <columns>
-                                              <TableColumn prefWidth="75.0" text="C1" />
-                                              <TableColumn prefWidth="75.0" text="C2" />
-                                            </columns>
-                                          </TableView>
-                                       </bottom>
-                                       <left>
-                                          <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="327.0" vgap="10.0" BorderPane.alignment="TOP_RIGHT">
-                                            <columnConstraints>
-                                              <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
+                                    <VBox spacing="15.0">
+                                       <children>
+                                          <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" spacing="15.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Yeni Liste Adı:" />
-                                                <TextField GridPane.columnIndex="1" />
-                                                <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Çıkılan Köy: " GridPane.rowIndex="1" />
-                                                <ComboBox fx:id="_villageList1" maxWidth="1.7976931348623157E308" onAction="#updateVillage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Mesafe:" GridPane.rowIndex="2" />
-                                                <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" vgap="10.0">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
                                                    <children>
-                                                      <TextField maxHeight="1.7976931348623157E308" promptText="minimum" />
-                                                      <Label maxHeight="1.7976931348623157E308" text="-" />
-                                                      <TextField maxHeight="1.7976931348623157E308" promptText="maksimum" />
+                                                      <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Yeni Liste Adı:" />
+                                                      <TextField GridPane.columnIndex="1" />
+                                                      <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Çıkılan Köy: " GridPane.rowIndex="1" />
+                                                      <ComboBox fx:id="_villageList1" maxWidth="1.7976931348623157E308" onAction="#updateVillage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Mesafe:" GridPane.rowIndex="2" />
+                                                      <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                         <children>
+                                                            <TextField fx:id="_raid_mindistance" maxHeight="1.7976931348623157E308" promptText="minimum" />
+                                                            <Label maxHeight="1.7976931348623157E308" text="-" />
+                                                            <TextField fx:id="_raid_maxdistance" maxHeight="1.7976931348623157E308" promptText="maksimum" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                         <children>
+                                                            <TextField fx:id="_raid_minpopulation" maxHeight="1.7976931348623157E308" promptText="minimum" />
+                                                            <Label maxHeight="1.7976931348623157E308" text="-" />
+                                                            <TextField fx:id="_raid_maxpopulation" maxHeight="1.7976931348623157E308" promptText="maksimum" />
+                                                         </children>
+                                                      </HBox>
+                                                      <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nüfus:" GridPane.rowIndex="3" />
                                                    </children>
-                                                </HBox>
-                                                <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                </GridPane>
+                                                <Separator orientation="VERTICAL">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Separator>
+                                                <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                                                    <children>
-                                                      <TextField maxHeight="1.7976931348623157E308" promptText="minimum" />
-                                                      <Label maxHeight="1.7976931348623157E308" text="-" />
-                                                      <TextField maxHeight="1.7976931348623157E308" promptText="maksimum" />
+                                                      <HBox spacing="10.0">
+                                                         <children>
+                                                            <Label maxHeight="1.7976931348623157E308" text="Irk:" />
+                                                            <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="20.0" HBox.hgrow="ALWAYS">
+                                                               <children>
+                                                                  <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
+                                                                     <graphic>
+                                                                        <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/roman.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                     </graphic>
+                                                                  </CheckBox>
+                                                                  <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
+                                                                     <graphic>
+                                                                        <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/teuton.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                     </graphic>
+                                                                  </CheckBox>
+                                                                  <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
+                                                                     <graphic>
+                                                                        <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/gaul.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                     </graphic>
+                                                                  </CheckBox>
+                                                                  <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
+                                                                     <graphic>
+                                                                        <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/egyptian.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                     </graphic>
+                                                                  </CheckBox>
+                                                                  <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
+                                                                     <graphic>
+                                                                        <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@../img/hun.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                     </graphic>
+                                                                  </CheckBox>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <CheckBox mnemonicParsing="false" text="Sadece bir birliğe üye olmayan köyler " />
+                                                      <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                         <children>
+                                                            <Button fx:id="_raid_scanvillages" mnemonicParsing="false" onAction="#raidScanVillages" text="Köyleri Tara" />
+                                                            <ProgressBar fx:id="_raid_scanvillagesbar" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
+                                                         </children>
+                                                      </HBox>
+                                                      <Label maxHeight="1.7976931348623157E308" text="Hiç köy seçilmedi">
+                                                         <font>
+                                                            <Font name="System Italic" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Button defaultButton="true" disable="true" mnemonicParsing="false" text="Yağma Listesi Oluştur" />
                                                    </children>
-                                                </HBox>
-                                                <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nüfus:" GridPane.rowIndex="3" />
+                                                </VBox>
                                              </children>
-                                          </GridPane>
-                                       </left>
+                                          </HBox>
+                                          <TableView fx:id="_raid_villagelist" prefHeight="238.0" prefWidth="710.0" VBox.vgrow="ALWAYS">
+                                            <columns>
+                                              <TableColumn fx:id="_raid_villagelist_name" prefWidth="75.0" text="Köy" />
+                                              <TableColumn fx:id="_raid_villagelist_player" prefWidth="75.0" text="Oyuncu" />
+                                                <TableColumn prefWidth="75.0" text="Nüfus" />
+                                                <TableColumn prefWidth="107.0" text="Mesafe" />
+                                                <TableColumn prefWidth="81.0" text="Halk" />
+                                                <TableColumn prefWidth="99.0" text="Birlik" />
+                                                <TableColumn prefWidth="89.0" text="Bölge" />
+                                                <TableColumn prefWidth="159.0" text="Koordinat" />
+                                            </columns>
+                                             <VBox.margin>
+                                                <Insets bottom="-10.0" left="-10.0" right="-10.0" />
+                                             </VBox.margin>
+                                          </TableView>
+                                       </children>
                                        <padding>
                                           <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                        </padding>
-                                       <center>
-                                          <Separator orientation="VERTICAL" prefHeight="200.0" BorderPane.alignment="CENTER" />
-                                       </center>
-                                       <right>
-                                          <VBox maxWidth="1.7976931348623157E308" spacing="10.0" BorderPane.alignment="TOP_RIGHT">
-                                             <children>
-                                                <HBox spacing="10.0">
-                                                   <children>
-                                                      <Label maxHeight="1.7976931348623157E308" text="Irk:" />
-                                                      <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false">
-                                                         <graphic>
-                                                            <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@../img/roman.png" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </graphic>
-                                                      </CheckBox>
-                                                      <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false">
-                                                         <graphic>
-                                                            <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@../img/teuton.png" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </graphic>
-                                                      </CheckBox>
-                                                      <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false">
-                                                         <graphic>
-                                                            <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@../img/gaul.png" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </graphic>
-                                                      </CheckBox>
-                                                      <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false">
-                                                         <graphic>
-                                                            <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@../img/egyptian.png" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </graphic>
-                                                      </CheckBox>
-                                                      <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false">
-                                                         <graphic>
-                                                            <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                                               <image>
-                                                                  <Image url="@../img/hun.png" />
-                                                               </image>
-                                                            </ImageView>
-                                                         </graphic>
-                                                      </CheckBox>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
-                                       </right>
-                                    </BorderPane>
+                                    </VBox>
                                  </content>
                             </Tab>
                           </tabs>

@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.traviumx.utils.AntiCaptcha;
+import com.traviumx.utils.Database;
 import com.traviumx.utils.Parser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +36,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class Account {
     private String id;
@@ -161,10 +165,10 @@ public class Account {
         return new BasicResponseHandler().handleResponse(response);
     }
 
-    private String getCookie(String cookieName) {
+    private Cookie getCookie(String cookieName) {
         for (Cookie cookie : this.cookieStore.getCookies()) {
             if (cookie.getName().equals(cookieName)) {
-                return cookie.getValue();
+                return cookie;
             }
         }
         return null;
@@ -200,7 +204,6 @@ public class Account {
             cookie.setPath(o.getAsJsonObject().get("path").getAsString());
             cookie.setVersion(o.getAsJsonObject().get("version").getAsInt());
             cookie.setSecure(o.getAsJsonObject().get("issecure").getAsBoolean());
-            System.out.println(o.getAsJsonObject().get("expiry"));
             if (o.getAsJsonObject().get("expiry") != null) {
                 Date date = new SimpleDateFormat("HH:mm:ss dd.MM.yyyy").parse(o.getAsJsonObject().get("expiry").getAsString());
                 //todo: global func
@@ -211,7 +214,8 @@ public class Account {
         }
     }
 
-    public void Login() throws Exception {
+    public Document Login() throws Exception {
+        System.out.println("Login olunuyor...");
         HttpRequestBase get = new HttpGet(gameWorld.getUrl());
         Document doc = Jsoup.parse(executeRequest(get));
         String s1 = doc.select(".loginButtonRow button").first().text();
@@ -244,12 +248,27 @@ public class Account {
                 errorSb.append(error.text());
             errorSb.append("!");
             throw new Exception(errorSb.toString());
+        } else {
+            return doc;
         }
     }
 
     public void Load() throws IOException {
         HttpRequestBase get = new HttpGet(gameWorld.getUrl() + "dorf1.php");
         Document doc = Jsoup.parse(executeRequest(get));
+
+
+        //LoginCheck
+        if (doc.select("#heroImageButton").first() == null) {
+            try {
+                doc = Login();
+                System.out.println("Çerezler güncelleniyor...");
+                Database.UpdateCookies(this);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         this.PlayerName = doc.select(".playerName").first().text();
         switch (doc.select("div.playerName i").first().attr("class")) {
             case "tribe1_medium":
@@ -327,42 +346,57 @@ public class Account {
         //village yüklemesi burdan itibaren olacak
         //for ile itare edilecek. Köy sayısı arttıkça süre uzar
         //todo: sonradan multi-thread yapılacak
+        //yaptım
+        ExecutorService es = Executors.newCachedThreadPool();
         for (Village v : Villages) {
-            get = new HttpGet(gameWorld.getUrl() + "dorf1.php" + "?newdid=" + v.id + "&");
-            doc = Jsoup.parse(executeRequest(get));
+            es.execute(() -> {
+                HttpRequestBase eGet = new HttpGet(gameWorld.getUrl() + "dorf1.php" + "?newdid=" + v.id + "&");
+                try {
+                    System.out.println("Köy yükleniyor...");
+                    Document eDoc = Jsoup.parse(executeRequest(eGet));
+                    v.warehouse = Parser.ParseDotty(eDoc.select("#stockBarWarehouse.value").first().text());
 
-            v.warehouse = Parser.ParseDotty(doc.select("#stockBarWarehouse.value").first().text());
+                    v.lumber = Parser.ParseDotty(eDoc.select("#l1.value").first().text());
+                    v.lumberFullness = Double.valueOf(StringUtils.substringBetween(
+                            eDoc.select("#lbar1.bar").first().attr("style"), "width:", "%")) / 100;
+                    v.lumberTooltip = eDoc.select("#stockBarResource1.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+                    v.lumberBoost = eDoc.select("#stockBarResource1 .productionBoost").size() > 0;
 
-            v.lumber = Parser.ParseDotty(doc.select("#l1.value").first().text());
-            v.lumberFullness = Double.valueOf(StringUtils.substringBetween(
-                    doc.select("#lbar1.bar").first().attr("style"), "width:", "%")) / 100;
-            v.lumberTooltip = doc.select("#stockBarResource1.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
-            v.lumberBoost = doc.select("#stockBarResource1 .productionBoost").size() > 0;
+                    v.clay = Parser.ParseDotty(eDoc.select("#l2.value").first().text());
+                    v.clayFullness = Double.valueOf(StringUtils.substringBetween(
+                            eDoc.select("#lbar2.bar").first().attr("style"), "width:", "%")) / 100;
+                    v.clayTooltip = eDoc.select("#stockBarResource2.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+                    v.clayBoost = eDoc.select("#stockBarResource2 .productionBoost").size() > 0;
 
-            v.clay = Parser.ParseDotty(doc.select("#l2.value").first().text());
-            v.clayFullness = Double.valueOf(StringUtils.substringBetween(
-                    doc.select("#lbar2.bar").first().attr("style"), "width:", "%")) / 100;
-            v.clayTooltip = doc.select("#stockBarResource2.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
-            v.clayBoost = doc.select("#stockBarResource2 .productionBoost").size() > 0;
+                    v.iron = Parser.ParseDotty(eDoc.select("#l3.value").first().text());
+                    v.ironFullness = Double.valueOf(StringUtils.substringBetween(
+                            eDoc.select("#lbar3.bar").first().attr("style"), "width:", "%")) / 100;
+                    v.ironTooltip = eDoc.select("#stockBarResource3.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+                    v.ironBoost = eDoc.select("#stockBarResource3 .productionBoost").size() > 0;
 
-            v.iron = Parser.ParseDotty(doc.select("#l3.value").first().text());
-            v.ironFullness = Double.valueOf(StringUtils.substringBetween(
-                    doc.select("#lbar3.bar").first().attr("style"), "width:", "%")) / 100;
-            v.ironTooltip = doc.select("#stockBarResource3.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
-            v.ironBoost = doc.select("#stockBarResource3 .productionBoost").size() > 0;
+                    v.granary = Parser.ParseDotty(eDoc.select("#stockBarGranary.value").first().text());
 
-            v.granary = Parser.ParseDotty(doc.select("#stockBarGranary.value").first().text());
+                    v.crop = Parser.ParseDotty(eDoc.select("#l4.value").first().text());
+                    v.cropFullness = Double.valueOf(StringUtils.substringBetween(
+                            eDoc.select("#lbar4.bar").first().attr("style"), "width:", "%")) / 100;
+                    v.cropTooltip = eDoc.select("#stockBarResource4.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+                    v.cropBoost = eDoc.select("#stockBarResource4 .productionBoost").size() > 0;
 
-            v.crop = Parser.ParseDotty(doc.select("#l4.value").first().text());
-            v.cropFullness = Double.valueOf(StringUtils.substringBetween(
-                    doc.select("#lbar4.bar").first().attr("style"), "width:", "%")) / 100;
-            v.cropTooltip = doc.select("#stockBarResource4.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
-            v.cropBoost = doc.select("#stockBarResource4 .productionBoost").size() > 0;
-
-            v.freecrop = Parser.ParseDotty(doc.select("#stockBarFreeCrop.value").first().text());
-            v.freecropTooltip = doc.select("#stockBarFreeCropWrapper.stockBarButton a").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
-
+                    v.freecrop = Parser.ParseDotty(eDoc.select("#stockBarFreeCrop.value").first().text());
+                    v.freecropTooltip = eDoc.select("#stockBarFreeCropWrapper.stockBarButton a").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         }
+        es.shutdown();
+        try {
+            boolean finished = es.awaitTermination(1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
 
 
     }

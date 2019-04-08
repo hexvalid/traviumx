@@ -2,15 +2,19 @@ package com.traviumx.ui.home;
 
 import com.traviumx.Pool;
 import com.traviumx.bot.Account;
+import com.traviumx.bot.Raid;
 import com.traviumx.bot.Village;
 import com.traviumx.ui.addaccount.AddAccountController;
 import com.traviumx.utils.Database;
 import com.traviumx.utils.Parser;
+import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -20,6 +24,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class HomeController {
     @FXML
@@ -127,6 +132,32 @@ public class HomeController {
     @FXML
     private Tooltip _freecropTooltip;
 
+    @FXML
+    private Button _raid_scanvillages;
+
+    @FXML
+    private TextField _raid_mindistance;
+
+    @FXML
+    private TextField _raid_maxdistance;
+
+    @FXML
+    private TextField _raid_minpopulation;
+
+    @FXML
+    private TextField _raid_maxpopulation;
+
+    @FXML
+    private ProgressBar _raid_scanvillagesbar;
+
+    @FXML
+    private TableView<Raid.TargetVillage> _raid_villagelist;
+
+    @FXML
+    private TableColumn<Raid.TargetVillage, String> _raid_villagelist_name;
+
+    @FXML
+    private TableColumn<?, ?> _raid_villagelist_player;
 
     @FXML
     protected void initialize() {
@@ -299,9 +330,33 @@ public class HomeController {
         _freecropTooltip.setText(v.freecropTooltip);
 
 
-
         //TODO: YAĞMA LİSTESİ İNİT.
 
         //TODO: yağma listesi için gold üyelik ve askeri üst olması gerek
+    }
+
+
+    @FXML
+    public void raidScanVillages() {
+        Task task = Raid.GetTargetVillages(
+                _accountList.getSelectionModel().getSelectedItem(),
+                _villageList.getSelectionModel().getSelectedItem(),
+                Integer.valueOf(_raid_mindistance.getText()),
+                Integer.valueOf(_raid_maxdistance.getText()),
+                Double.valueOf(_raid_minpopulation.getText()),
+                Double.valueOf(_raid_maxpopulation.getText()),
+                _raid_scanvillagesbar);
+
+        Thread th = new Thread(task);
+        th.setDaemon(true);
+        th.start();
+        task.setOnSucceeded(t -> {
+            ObservableList<Raid.TargetVillage> result = (ObservableList<Raid.TargetVillage>) task.getValue();
+            System.out.println(result.size());
+
+            _raid_villagelist_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+            _raid_villagelist.setItems(result);
+//todo : https://docs.oracle.com/javafx/2/ui_controls/table-view.htm
+        });
     }
 }
