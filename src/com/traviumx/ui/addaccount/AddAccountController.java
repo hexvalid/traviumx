@@ -1,9 +1,12 @@
 package com.traviumx.ui.addaccount;
 
+import com.cedarsoftware.util.io.JsonReader;
+import com.cedarsoftware.util.io.JsonWriter;
 import com.traviumx.bot.Account;
 import com.traviumx.bot.GameWorld;
 import com.traviumx.bot.Vars;
 import com.traviumx.ui.Helper;
+import com.traviumx.utils.Cache;
 import com.traviumx.utils.Database;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -13,7 +16,11 @@ import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddAccountController {
@@ -70,24 +77,34 @@ public class AddAccountController {
         _pinLabel.setVisible(false);
         _gameWorlds.setDisable(true);
         _gameWorlds.setPromptText("Yükleniyor...");
-
         new Thread(() -> {
             try {
-                List<GameWorld> l = GameWorld.GetGameWorlds("tr", true);
+
+
+                //todo: cache denemesi örneği:
+                List<GameWorld> l = (List<GameWorld>) Cache.GetFromCache("gameworlds", 1);
+                if (l == null) {
+                    l = GameWorld.GetGameWorlds("tr", true);
+                    Cache.AddToCache("gameworlds", l);
+                }
+
+                List<GameWorld> finalL = l;
                 Platform.runLater(() -> {
                     _gameWorlds.setCellFactory(gameWorldCallBack);
                     _gameWorlds.setButtonCell(gameWorldCallBack.call(null));
-                    _gameWorlds.getItems().addAll(FXCollections.observableArrayList(l));
+                    _gameWorlds.getItems().addAll(FXCollections.observableArrayList(finalL));
                     _gameWorlds.setPromptText("");
                     _gameWorlds.getSelectionModel().selectFirst();
                     _gameWorlds.setDisable(false);
                 });
 
+                //  Database.AddObjectToDB("gameworlds", l);
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }).start();
-
     }
 
     @FXML

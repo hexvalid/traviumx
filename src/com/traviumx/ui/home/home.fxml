@@ -484,25 +484,25 @@
                                                   </rowConstraints>
                                                    <children>
                                                       <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Yeni Liste Adı:" />
-                                                      <TextField GridPane.columnIndex="1" />
+                                                      <TextField fx:id="_raid_newlistname" GridPane.columnIndex="1" />
                                                       <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Çıkılan Köy: " GridPane.rowIndex="1" />
-                                                      <ComboBox fx:id="_villageList1" maxWidth="1.7976931348623157E308" onAction="#updateVillage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <ComboBox fx:id="_raid_targetvillage" maxWidth="1.7976931348623157E308" onAction="#updateVillage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                       <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Mesafe:" GridPane.rowIndex="2" />
                                                       <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                          <children>
-                                                            <TextField fx:id="_raid_mindistance" maxHeight="1.7976931348623157E308" promptText="minimum" />
+                                                            <TextField fx:id="_raid_mindistance" maxHeight="1.7976931348623157E308" promptText="(min)" />
                                                             <Label maxHeight="1.7976931348623157E308" text="-" />
-                                                            <TextField fx:id="_raid_maxdistance" maxHeight="1.7976931348623157E308" promptText="maksimum" />
+                                                            <TextField fx:id="_raid_maxdistance" maxHeight="1.7976931348623157E308" promptText="(max)" />
                                                          </children>
                                                       </HBox>
                                                       <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                                          <children>
-                                                            <TextField fx:id="_raid_minpopulation" maxHeight="1.7976931348623157E308" promptText="minimum" />
+                                                            <TextField fx:id="_raid_mintotalpopulation" maxHeight="1.7976931348623157E308" promptText="(min)" />
                                                             <Label maxHeight="1.7976931348623157E308" text="-" />
-                                                            <TextField fx:id="_raid_maxpopulation" maxHeight="1.7976931348623157E308" promptText="maksimum" />
+                                                            <TextField fx:id="_raid_maxtotalpopulation" maxHeight="1.7976931348623157E308" promptText="(max)" />
                                                          </children>
                                                       </HBox>
-                                                      <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nüfus:" GridPane.rowIndex="3" />
+                                                      <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Toplam Nüfus:" GridPane.rowIndex="3" />
                                                    </children>
                                                 </GridPane>
                                                 <Separator orientation="VERTICAL">
@@ -514,10 +514,10 @@
                                                    <children>
                                                       <HBox spacing="10.0">
                                                          <children>
-                                                            <Label maxHeight="1.7976931348623157E308" text="Irk:" />
+                                                            <Label maxHeight="1.7976931348623157E308" text="Halk:" />
                                                             <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="20.0" HBox.hgrow="ALWAYS">
                                                                <children>
-                                                                  <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
+                                                                  <CheckBox fx:id="_raid_roman" maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
                                                                      <graphic>
                                                                         <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                                                            <image>
@@ -526,7 +526,7 @@
                                                                         </ImageView>
                                                                      </graphic>
                                                                   </CheckBox>
-                                                                  <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
+                                                                  <CheckBox fx:id="_raid_teuton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
                                                                      <graphic>
                                                                         <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                                                            <image>
@@ -535,7 +535,7 @@
                                                                         </ImageView>
                                                                      </graphic>
                                                                   </CheckBox>
-                                                                  <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
+                                                                  <CheckBox fx:id="_raid_gaul" maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
                                                                      <graphic>
                                                                         <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                                                            <image>
@@ -544,7 +544,7 @@
                                                                         </ImageView>
                                                                      </graphic>
                                                                   </CheckBox>
-                                                                  <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
+                                                                  <CheckBox fx:id="_raid_egyptian" maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
                                                                      <graphic>
                                                                         <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                                                            <image>
@@ -553,7 +553,7 @@
                                                                         </ImageView>
                                                                      </graphic>
                                                                   </CheckBox>
-                                                                  <CheckBox maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
+                                                                  <CheckBox fx:id="_raid_hun" maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
                                                                      <graphic>
                                                                         <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                                                            <image>
@@ -566,7 +566,7 @@
                                                             </HBox>
                                                          </children>
                                                       </HBox>
-                                                      <CheckBox mnemonicParsing="false" text="Sadece bir birliğe üye olmayan köyler " />
+                                                      <CheckBox fx:id="_raid_onlynothavealliance" mnemonicParsing="false" text="Sadece bir birliğe üye olmayan köyler " />
                                                       <HBox alignment="CENTER_LEFT" spacing="10.0">
                                                          <children>
                                                             <Button fx:id="_raid_scanvillages" mnemonicParsing="false" onAction="#raidScanVillages" text="Köyleri Tara" />
@@ -585,14 +585,14 @@
                                           </HBox>
                                           <TableView fx:id="_raid_villagelist" prefHeight="238.0" prefWidth="710.0" VBox.vgrow="ALWAYS">
                                             <columns>
-                                              <TableColumn fx:id="_raid_villagelist_name" prefWidth="75.0" text="Köy" />
-                                              <TableColumn fx:id="_raid_villagelist_player" prefWidth="75.0" text="Oyuncu" />
-                                                <TableColumn prefWidth="75.0" text="Nüfus" />
-                                                <TableColumn prefWidth="107.0" text="Mesafe" />
-                                                <TableColumn prefWidth="81.0" text="Halk" />
-                                                <TableColumn prefWidth="99.0" text="Birlik" />
-                                                <TableColumn prefWidth="89.0" text="Bölge" />
-                                                <TableColumn prefWidth="159.0" text="Koordinat" />
+                                              <TableColumn fx:id="_raid_villagelist_name" maxWidth="1.7976931348623157E308" prefWidth="124.0" text="Köy" />
+                                              <TableColumn fx:id="_raid_villagelist_player" prefWidth="100.0" text="Oyuncu" />
+                                                <TableColumn fx:id="_raid_villagelist_population" prefWidth="70.0" text="Nüfus" />
+                                                <TableColumn fx:id="_raid_villagelist_totalpopulation" prefWidth="90.0" text="T. Nüfus" />
+                                                <TableColumn fx:id="_raid_villagelist_distance" text="Mesafe" />
+                                                <TableColumn fx:id="_raid_villagelist_tribe" prefWidth="90.0" text="Halk" />
+                                                <TableColumn fx:id="_raid_villagelist_alliance" prefWidth="85.0" text="Birlik" />
+                                                <TableColumn fx:id="_raid_villagelist_coordinate" prefWidth="90.0" text="Koordinat" />
                                             </columns>
                                              <VBox.margin>
                                                 <Insets bottom="-10.0" left="-10.0" right="-10.0" />

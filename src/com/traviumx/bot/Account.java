@@ -346,57 +346,46 @@ public class Account {
         //village yüklemesi burdan itibaren olacak
         //for ile itare edilecek. Köy sayısı arttıkça süre uzar
         //todo: sonradan multi-thread yapılacak
-        //yaptım
-        ExecutorService es = Executors.newCachedThreadPool();
         for (Village v : Villages) {
-            es.execute(() -> {
-                HttpRequestBase eGet = new HttpGet(gameWorld.getUrl() + "dorf1.php" + "?newdid=" + v.id + "&");
-                try {
-                    System.out.println("Köy yükleniyor...");
-                    Document eDoc = Jsoup.parse(executeRequest(eGet));
-                    v.warehouse = Parser.ParseDotty(eDoc.select("#stockBarWarehouse.value").first().text());
 
-                    v.lumber = Parser.ParseDotty(eDoc.select("#l1.value").first().text());
-                    v.lumberFullness = Double.valueOf(StringUtils.substringBetween(
-                            eDoc.select("#lbar1.bar").first().attr("style"), "width:", "%")) / 100;
-                    v.lumberTooltip = eDoc.select("#stockBarResource1.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
-                    v.lumberBoost = eDoc.select("#stockBarResource1 .productionBoost").size() > 0;
+            get = new HttpGet(gameWorld.getUrl() + "dorf1.php" + "?newdid=" + v.id + "&");
+            System.out.println("Köy yükleniyor... " + v.name);
+            doc = Jsoup.parse(executeRequest(get));
+            v.warehouse = Parser.ParseDotty(doc.select("#stockBarWarehouse.value").first().text());
 
-                    v.clay = Parser.ParseDotty(eDoc.select("#l2.value").first().text());
-                    v.clayFullness = Double.valueOf(StringUtils.substringBetween(
-                            eDoc.select("#lbar2.bar").first().attr("style"), "width:", "%")) / 100;
-                    v.clayTooltip = eDoc.select("#stockBarResource2.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
-                    v.clayBoost = eDoc.select("#stockBarResource2 .productionBoost").size() > 0;
+            v.lumber = Parser.ParseDotty(doc.select("#l1.value").first().text());
+            v.lumberFullness = Double.valueOf(StringUtils.substringBetween(
+                    doc.select("#lbar1.bar").first().attr("style"), "width:", "%")) / 100;
+            v.lumberTooltip = doc.select("#stockBarResource1.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+            v.lumberBoost = doc.select("#stockBarResource1 .productionBoost").size() > 0;
 
-                    v.iron = Parser.ParseDotty(eDoc.select("#l3.value").first().text());
-                    v.ironFullness = Double.valueOf(StringUtils.substringBetween(
-                            eDoc.select("#lbar3.bar").first().attr("style"), "width:", "%")) / 100;
-                    v.ironTooltip = eDoc.select("#stockBarResource3.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
-                    v.ironBoost = eDoc.select("#stockBarResource3 .productionBoost").size() > 0;
+            v.clay = Parser.ParseDotty(doc.select("#l2.value").first().text());
+            v.clayFullness = Double.valueOf(StringUtils.substringBetween(
+                    doc.select("#lbar2.bar").first().attr("style"), "width:", "%")) / 100;
+            v.clayTooltip = doc.select("#stockBarResource2.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+            v.clayBoost = doc.select("#stockBarResource2 .productionBoost").size() > 0;
 
-                    v.granary = Parser.ParseDotty(eDoc.select("#stockBarGranary.value").first().text());
+            v.iron = Parser.ParseDotty(doc.select("#l3.value").first().text());
+            v.ironFullness = Double.valueOf(StringUtils.substringBetween(
+                    doc.select("#lbar3.bar").first().attr("style"), "width:", "%")) / 100;
+            v.ironTooltip = doc.select("#stockBarResource3.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+            v.ironBoost = doc.select("#stockBarResource3 .productionBoost").size() > 0;
 
-                    v.crop = Parser.ParseDotty(eDoc.select("#l4.value").first().text());
-                    v.cropFullness = Double.valueOf(StringUtils.substringBetween(
-                            eDoc.select("#lbar4.bar").first().attr("style"), "width:", "%")) / 100;
-                    v.cropTooltip = eDoc.select("#stockBarResource4.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
-                    v.cropBoost = eDoc.select("#stockBarResource4 .productionBoost").size() > 0;
+            v.granary = Parser.ParseDotty(doc.select("#stockBarGranary.value").first().text());
 
-                    v.freecrop = Parser.ParseDotty(eDoc.select("#stockBarFreeCrop.value").first().text());
-                    v.freecropTooltip = eDoc.select("#stockBarFreeCropWrapper.stockBarButton a").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-        }
-        es.shutdown();
-        try {
-            boolean finished = es.awaitTermination(1, TimeUnit.MINUTES);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            v.crop = Parser.ParseDotty(doc.select("#l4.value").first().text());
+            v.cropFullness = Double.valueOf(StringUtils.substringBetween(
+                    doc.select("#lbar4.bar").first().attr("style"), "width:", "%")) / 100;
+            v.cropTooltip = doc.select("#stockBarResource4.stockBarButton").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+            v.cropBoost = doc.select("#stockBarResource4 .productionBoost").size() > 0;
+
+            v.freecrop = Parser.ParseDotty(doc.select("#stockBarFreeCrop.value").first().text());
+            v.freecropTooltip = doc.select("#stockBarFreeCropWrapper.stockBarButton a").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
+
         }
 
 
+        System.out.println("ok? ");
 
 
     }

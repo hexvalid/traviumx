@@ -1,6 +1,6 @@
 package com.traviumx.ui.home;
 
-import com.traviumx.Pool;
+import com.traviumx.utils.Cache;
 import com.traviumx.bot.Account;
 import com.traviumx.bot.Raid;
 import com.traviumx.bot.Village;
@@ -24,7 +24,6 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 public class HomeController {
     @FXML
@@ -133,6 +132,25 @@ public class HomeController {
     private Tooltip _freecropTooltip;
 
     @FXML
+    private TextField _raid_newlistname;
+
+    @FXML
+    private CheckBox _raid_roman;
+
+    @FXML
+    private CheckBox _raid_teuton;
+
+    @FXML
+    private CheckBox _raid_gaul;
+
+    @FXML
+    private CheckBox _raid_egyptian;
+
+    @FXML
+    private CheckBox _raid_hun;
+
+
+    @FXML
     private Button _raid_scanvillages;
 
     @FXML
@@ -142,10 +160,10 @@ public class HomeController {
     private TextField _raid_maxdistance;
 
     @FXML
-    private TextField _raid_minpopulation;
+    private TextField _raid_mintotalpopulation;
 
     @FXML
-    private TextField _raid_maxpopulation;
+    private TextField _raid_maxtotalpopulation;
 
     @FXML
     private ProgressBar _raid_scanvillagesbar;
@@ -157,7 +175,32 @@ public class HomeController {
     private TableColumn<Raid.TargetVillage, String> _raid_villagelist_name;
 
     @FXML
-    private TableColumn<?, ?> _raid_villagelist_player;
+    private TableColumn<Raid.TargetVillage, String> _raid_villagelist_player;
+
+    @FXML
+    private TableColumn<Raid.TargetVillage, Integer> _raid_villagelist_population;
+
+    @FXML
+    private TableColumn<Raid.TargetVillage, Integer> _raid_villagelist_totalpopulation;
+
+    @FXML
+    private TableColumn<Raid.TargetVillage, Double> _raid_villagelist_distance;
+
+    @FXML
+    private TableColumn<Raid.TargetVillage, String> _raid_villagelist_tribe;
+
+    @FXML
+    private TableColumn<Raid.TargetVillage, String> _raid_villagelist_alliance;
+
+    @FXML
+    private TableColumn<Raid.TargetVillage, String> _raid_villagelist_coordinate;
+
+    @FXML
+    private CheckBox _raid_onlynothavealliance;
+
+    @FXML
+    private ComboBox<Village> _raid_targetvillage;
+
 
     @FXML
     protected void initialize() {
@@ -165,6 +208,19 @@ public class HomeController {
         _accountList.setButtonCell(accountCallBack.call(null));
         _villageList.setCellFactory(villageCallBack1);
         _villageList.setButtonCell(villageCallBack2.call(null));
+        _raid_targetvillage.setCellFactory(villageCallBack1);
+        _raid_targetvillage.setButtonCell(villageCallBack2.call(null));
+
+        _raid_villagelist_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        _raid_villagelist_player.setCellValueFactory(new PropertyValueFactory<>("player"));
+        _raid_villagelist_population.setCellValueFactory(new PropertyValueFactory<>("population"));
+        _raid_villagelist_totalpopulation.setCellValueFactory(new PropertyValueFactory<>("totalpopulation"));
+        _raid_villagelist_distance.setCellValueFactory(new PropertyValueFactory<>("distance"));
+        _raid_villagelist_tribe.setCellValueFactory(new PropertyValueFactory<>("tribe"));
+        _raid_villagelist_alliance.setCellValueFactory(new PropertyValueFactory<>("alliance"));
+        _raid_villagelist_coordinate.setCellValueFactory(new PropertyValueFactory<>("coordinate"));
+
+
         updateAccountList();
 
     }
@@ -244,7 +300,7 @@ public class HomeController {
     public void updateAccountList() {
         try {
             Database.getAccountsToPool();
-            _accountList.getItems().setAll(Pool.accountList);
+            _accountList.getItems().setAll(Cache.accountList);
             if (_accountList.getSelectionModel().getSelectedItem() == null) {
                 _accountList.getSelectionModel().selectFirst();
             }
@@ -270,8 +326,10 @@ public class HomeController {
             _xpBarTooltip.setText(a.ExperienceTooltip);
             _gameWorldText.setText(a.getGameWorld().getName());
             _villageList.getItems().setAll(a.Villages);
+            _raid_targetvillage.getItems().setAll(a.Villages);
             if (_villageList.getSelectionModel().isEmpty()) {
                 _villageList.getSelectionModel().selectFirst();
+                _raid_targetvillage.getSelectionModel().selectFirst();
             }
 
             updateVillage();
@@ -338,13 +396,22 @@ public class HomeController {
 
     @FXML
     public void raidScanVillages() {
+        _raid_scanvillages.setDisable(true);
+        _raid_scanvillagesbar.setVisible(true);
+
         Task task = Raid.GetTargetVillages(
                 _accountList.getSelectionModel().getSelectedItem(),
                 _villageList.getSelectionModel().getSelectedItem(),
-                Integer.valueOf(_raid_mindistance.getText()),
-                Integer.valueOf(_raid_maxdistance.getText()),
-                Double.valueOf(_raid_minpopulation.getText()),
-                Double.valueOf(_raid_maxpopulation.getText()),
+                Double.valueOf(_raid_mindistance.getText()),
+                Double.valueOf(_raid_maxdistance.getText()),
+                Integer.valueOf(_raid_mintotalpopulation.getText()),
+                Integer.valueOf(_raid_maxtotalpopulation.getText()),
+                _raid_onlynothavealliance.isSelected(),
+                _raid_roman.isSelected(),
+                _raid_teuton.isSelected(),
+                _raid_gaul.isSelected(),
+                _raid_egyptian.isSelected(),
+                _raid_hun.isSelected(),
                 _raid_scanvillagesbar);
 
         Thread th = new Thread(task);
@@ -353,10 +420,13 @@ public class HomeController {
         task.setOnSucceeded(t -> {
             ObservableList<Raid.TargetVillage> result = (ObservableList<Raid.TargetVillage>) task.getValue();
             System.out.println(result.size());
-
-            _raid_villagelist_name.setCellValueFactory(new PropertyValueFactory<>("name"));
             _raid_villagelist.setItems(result);
-//todo : https://docs.oracle.com/javafx/2/ui_controls/table-view.htm
+            _raid_scanvillagesbar.setVisible(false);
+            _raid_scanvillagesbar.setProgress(0);
+            _raid_scanvillages.setDisable(false);
+//todo : task.setOnFailed ??
         });
+
+
     }
 }

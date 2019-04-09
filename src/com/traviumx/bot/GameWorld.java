@@ -1,6 +1,8 @@
 package com.traviumx.bot;
 
 import com.google.gson.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -8,9 +10,7 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.msgpack.MessagePack;
 import org.msgpack.type.Value;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -20,6 +20,8 @@ import java.util.regex.Matcher;
 import java.util.zip.GZIPInputStream;
 
 public class GameWorld {
+
+
     private String uuid;
     private String shortcut;
     private String name;
@@ -39,9 +41,10 @@ public class GameWorld {
 
     }
 
-    public String toJson() {
-        return new GsonBuilder().registerTypeAdapter(GameWorld.class, new GameWorld.GameWorldSerializer()).create().toJson(this);
+    public GameWorld() {
+        super();
     }
+
 
     //for from msgpack
     public GameWorld(String uuid, String shortcut, String name, String url, int status,
@@ -92,6 +95,10 @@ public class GameWorld {
         return start;
     }
 
+    public String toJson() {
+        return new GsonBuilder().registerTypeAdapter(GameWorld.class, new GameWorld.GameWorldSerializer()).create().toJson(this);
+    }
+
     public static class GameWorldSerializer implements JsonSerializer<GameWorld> {
         public JsonElement serialize(final GameWorld gw, final Type type, final JsonSerializationContext context) {
             JsonObject result = new JsonObject();
@@ -135,6 +142,7 @@ public class GameWorld {
                     jgw.get("start").getAsLong());
             list.add(gw);
         }
+
         return list;
     }
 

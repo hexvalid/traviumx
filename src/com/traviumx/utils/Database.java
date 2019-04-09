@@ -1,26 +1,23 @@
 package com.traviumx.utils;
 
-import com.traviumx.Pool;
 import com.traviumx.bot.Account;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
-import java.io.File;
+import java.io.*;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Database {
 
-    private static Connection conn;
+    public static Connection conn;
     private static final String initQuery = "create table accounts(id TEXT,username TEXT not null,password TEXT not null," +
             "gameworld TEXT not null,useragent TEXT,pax TEXT,cookies TEXT,config TEXT,owner TEXT,added TIMESTAMP); " +
-            "create unique index accounts_id_uindex on accounts (id);";
-    private static final String addAccountQuery = "insert into accounts(id,username,password,gameworld,useragent," +
+            "create table caches(key text not null primary key on conflict replace,date timestamp,value text)";
+    private static final String insertAccountQuery = "insert into accounts(id,username,password,gameworld,useragent," +
             "pax,cookies,config,owner,added) values(?,?,?,?,?,?,?,?,?,?)";
     private static final String selectAllAccountsQuery = "select id,username,password,gameworld,useragent,pax,cookies,config from accounts";
     private static final String updateCookiesQuery = "update accounts set cookies = ? where id = ?";
-
+    public static final String insertCacheQuery = "insert into caches(key,date,value) values(?,?,?)";
+    public static final String selectCacheQuery = "select date,value from caches where key = ?";
+    public static final String updateCacheQuery = "update caches set value = ? where key = ?";
 
     public static void connect() throws SQLException, ClassNotFoundException {
         Class.forName("org.sqlite.JDBC");
@@ -42,7 +39,7 @@ public class Database {
 
 
     public static void AddAccountToDB(Account a) throws SQLException {
-        try (PreparedStatement pstmt = conn.prepareStatement(addAccountQuery)) {
+        try (PreparedStatement pstmt = conn.prepareStatement(insertAccountQuery)) {
             pstmt.setString(1, a.getId());
             pstmt.setString(2, a.getUsername());
             pstmt.setString(3, a.getPassword());
@@ -51,7 +48,7 @@ public class Database {
             pstmt.setString(6, a.getPax());
             pstmt.setString(7, a.getCookiesAsJson()); //a.getConfig().toJson()
             pstmt.setString(8, ""); //a.getConfig().toJson()
-            pstmt.setString(9, Pool.loggedUser);
+            pstmt.setString(9, Cache.loggedUser);
             pstmt.setTimestamp(10, new Timestamp(System.currentTimeMillis()));
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -75,7 +72,7 @@ public class Database {
         while (rs.next()) {
             boolean containsInPool = false;
             String id = rs.getString("id");
-            for (Account pa : Pool.accountList) {
+            for (Account pa : Cache.accountList) {
                 if (pa.getId().equals(id)) {
                     containsInPool = true;
                 }
@@ -90,9 +87,10 @@ public class Database {
                         rs.getString("cookies"),
                         rs.getString("config")
                 );
-                Pool.accountList.add(a);
+                Cache.accountList.add(a);
             }
         }
         stmt.close();
     }
+
 }

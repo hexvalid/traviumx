@@ -8,6 +8,9 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Database.connect();
+
+      //  Database.ReadObjectFromDB("gameworlds");
+
         Application.launch(Home.class, args);
     }
 
