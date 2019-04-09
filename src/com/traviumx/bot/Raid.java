@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -78,15 +79,14 @@ public class Raid {
     public static Task GetTargetVillages(Account a, Village v, double minDistance, double maxDistance,
                                          int minTotalPopulation, int maxTotalPopulation, boolean onlyNotHaveAlliance,
                                          boolean roman, boolean teuton, boolean gaul, boolean egyptian, boolean hun,
-                                         ProgressBar pb) {
+                                         ProgressBar pb, Label status) {
         return new Task<ObservableList<TargetVillage>>() {
             @Override
             public ObservableList<TargetVillage> call() throws IOException, SQLException {
+                Platform.runLater(() -> status.setText("Taranıyor...")); //todo: çeviri
                 double progress = 0.0;
-
                 ObservableList<TargetVillage> list = FXCollections.observableList(new ArrayList<>());
                 ObservableList<TargetVillage> finalList = FXCollections.observableList(new ArrayList<>());
-
                 //todo: cache denemesi örneği:
                 boolean fromCache;
                 List<TargetVillage> cachedList;
@@ -99,7 +99,6 @@ public class Raid {
                     Document doc = Jsoup.parse(a.executeRequest(get));
                     int pageCount = Integer.valueOf(doc.select(".paginator .number").last().text());
                     for (int p = 1; p <= pageCount; p++) {
-                        System.out.println("başladı " + p);
                         try {
                             get = new HttpGet(a.getGameWorld().getUrl() + "statistiken.php?id=2&page=" + p);
                             doc = Jsoup.parse(a.executeRequest(get));
@@ -112,11 +111,14 @@ public class Raid {
                                 tv.coordinateY = Parser.ParseInt(e.select(".coordinateY").text());
                                 cachedList.add(tv);
                             }
-                            System.out.println("hmm ?");
-                            progress += 0.4 / pageCount;
+                            progress += 0.5 / pageCount;
                             double finalProgress = progress;
-                            Platform.runLater(() -> pb.setProgress(finalProgress));
+                            Platform.runLater(() -> {
+                                pb.setProgress(finalProgress);
+                                status.setText("Taranıyor " + String.format("%.2f", finalProgress * 100) + "%...");
+                            });
                         } catch (IOException e) {
+                            e.printStackTrace(); //todo: adam akıllı catch
                         }
                     }
                 } else {
@@ -147,13 +149,7 @@ public class Raid {
 
                 //detailed filter now
                 for (TargetVillage tv : list) {
-                    if (fromCache) {
-                        progress += 0.6 / list.size();
-                    } else {
-                        progress += 1.0 / list.size();
-                    }
-                    double finalProgress = progress;
-                    Platform.runLater(() -> pb.setProgress(finalProgress));
+
                     if (!tv.detailedLoaded) {
                         HttpRequestBase get = new HttpGet(a.getGameWorld().getUrl() +
                                 "position_details.php?x=" + tv.coordinateX + "&y=" + tv.coordinateY);
@@ -177,7 +173,16 @@ public class Raid {
                         finalList.add(tv);
                     }
 
-
+                    if (fromCache) {
+                        progress += 0.5 / list.size();
+                    } else {
+                        progress += 1.0 / list.size();
+                    }
+                    double finalProgress = progress;
+                    Platform.runLater(() -> {
+                        pb.setProgress(finalProgress);
+                        status.setText("Taranıyor " + String.format("%.2f", finalProgress * 100) + "%...");
+                    });
                 }
 
 
@@ -186,6 +191,9 @@ public class Raid {
                 } else {
                     Cache.AddToCache("villages@" + a.getGameWorld().getUuid(), cachedList);
                 }
+
+                Platform.runLater(() -> status.setText(finalList.size() + " köy tarandı.")); //todo: çeviri
+
                 return finalList;
             }
         };

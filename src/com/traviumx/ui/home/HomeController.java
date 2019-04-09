@@ -7,6 +7,7 @@ import com.traviumx.bot.Village;
 import com.traviumx.ui.addaccount.AddAccountController;
 import com.traviumx.utils.Database;
 import com.traviumx.utils.Parser;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -201,6 +202,12 @@ public class HomeController {
     @FXML
     private ComboBox<Village> _raid_targetvillage;
 
+    @FXML
+    private Label _raid_villagelist_status;
+
+    @FXML
+    private Button _raid_villagelist_create;
+
 
     @FXML
     protected void initialize() {
@@ -210,7 +217,7 @@ public class HomeController {
         _villageList.setButtonCell(villageCallBack2.call(null));
         _raid_targetvillage.setCellFactory(villageCallBack1);
         _raid_targetvillage.setButtonCell(villageCallBack2.call(null));
-
+        _raid_villagelist.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         _raid_villagelist_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         _raid_villagelist_player.setCellValueFactory(new PropertyValueFactory<>("player"));
         _raid_villagelist_population.setCellValueFactory(new PropertyValueFactory<>("population"));
@@ -219,7 +226,16 @@ public class HomeController {
         _raid_villagelist_tribe.setCellValueFactory(new PropertyValueFactory<>("tribe"));
         _raid_villagelist_alliance.setCellValueFactory(new PropertyValueFactory<>("alliance"));
         _raid_villagelist_coordinate.setCellValueFactory(new PropertyValueFactory<>("coordinate"));
-
+        _raid_villagelist.getSelectionModel().getSelectedItems().addListener((
+                ListChangeListener<Raid.TargetVillage>) changed -> {
+            if (changed.getList().size() > 0) {
+                _raid_villagelist_status.setText(changed.getList().size() + " köy seçildi");
+                _raid_villagelist_create.setDisable(false);
+            } else {
+                _raid_villagelist_status.setText("Hiç köy seçilmedi"); //todo: çeviri
+                _raid_villagelist_create.setDisable(true);
+            }
+        });
 
         updateAccountList();
 
@@ -396,7 +412,22 @@ public class HomeController {
 
     @FXML
     public void raidScanVillages() {
+        _raid_newlistname.setDisable(true);
+        _raid_targetvillage.setDisable(true);
+        _raid_mindistance.setDisable(true);
+        _raid_maxdistance.setDisable(true);
+        _raid_mintotalpopulation.setDisable(true);
+        _raid_maxtotalpopulation.setDisable(true);
+        _raid_roman.setDisable(true);
+        _raid_teuton.setDisable(true);
+        _raid_gaul.setDisable(true);
+        _raid_egyptian.setDisable(true);
+        _raid_hun.setDisable(true);
+        _raid_onlynothavealliance.setDisable(true);
         _raid_scanvillages.setDisable(true);
+        _raid_villagelist_create.setDisable(true);
+        _raid_villagelist.setDisable(true);
+
         _raid_scanvillagesbar.setVisible(true);
 
         Task task = Raid.GetTargetVillages(
@@ -412,7 +443,7 @@ public class HomeController {
                 _raid_gaul.isSelected(),
                 _raid_egyptian.isSelected(),
                 _raid_hun.isSelected(),
-                _raid_scanvillagesbar);
+                _raid_scanvillagesbar, _raid_villagelist_status);
 
         Thread th = new Thread(task);
         th.setDaemon(true);
@@ -421,9 +452,22 @@ public class HomeController {
             ObservableList<Raid.TargetVillage> result = (ObservableList<Raid.TargetVillage>) task.getValue();
             System.out.println(result.size());
             _raid_villagelist.setItems(result);
+            _raid_newlistname.setDisable(false); //todo: grupta olabilirdi bu kadar şey? dimi?
+            _raid_targetvillage.setDisable(false);
+            _raid_mindistance.setDisable(false);
+            _raid_maxdistance.setDisable(false);
+            _raid_mintotalpopulation.setDisable(false);
+            _raid_maxtotalpopulation.setDisable(false);
+            _raid_roman.setDisable(false);
+            _raid_teuton.setDisable(false);
+            _raid_gaul.setDisable(false);
+            _raid_egyptian.setDisable(false);
+            _raid_hun.setDisable(false);
+            _raid_onlynothavealliance.setDisable(false);
+            _raid_scanvillages.setDisable(false);
+            _raid_villagelist.setDisable(false);
             _raid_scanvillagesbar.setVisible(false);
             _raid_scanvillagesbar.setProgress(0);
-            _raid_scanvillages.setDisable(false);
 //todo : task.setOnFailed ??
         });
 

@@ -33,3 +33,10 @@
         -fx-border-color: #747474;
         -fx-border-radius: 5;
 }
+
+
+.NonFocused:focused {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+
+}

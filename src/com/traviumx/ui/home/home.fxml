@@ -469,42 +469,47 @@
                                  <content>
                                     <VBox spacing="15.0">
                                        <children>
-                                          <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" spacing="15.0">
+                                          <HBox maxHeight="-Infinity" minHeight="-Infinity" spacing="15.0">
                                              <children>
-                                                <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" vgap="10.0">
-                                                  <columnConstraints>
-                                                    <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
-                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                  </columnConstraints>
-                                                  <rowConstraints>
-                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                  </rowConstraints>
+                                                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" spacing="10.0">
                                                    <children>
-                                                      <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Yeni Liste Adı:" />
-                                                      <TextField fx:id="_raid_newlistname" GridPane.columnIndex="1" />
-                                                      <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Çıkılan Köy: " GridPane.rowIndex="1" />
-                                                      <ComboBox fx:id="_raid_targetvillage" maxWidth="1.7976931348623157E308" onAction="#updateVillage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                      <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Mesafe:" GridPane.rowIndex="2" />
-                                                      <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                      <GridPane hgap="10.0" vgap="10.0">
+                                                        <columnConstraints>
+                                                          <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        </rowConstraints>
                                                          <children>
-                                                            <TextField fx:id="_raid_mindistance" maxHeight="1.7976931348623157E308" promptText="(min)" />
-                                                            <Label maxHeight="1.7976931348623157E308" text="-" />
-                                                            <TextField fx:id="_raid_maxdistance" maxHeight="1.7976931348623157E308" promptText="(max)" />
+                                                            <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Yeni Liste Adı:" />
+                                                            <TextField fx:id="_raid_newlistname" GridPane.columnIndex="1" />
+                                                            <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Çıkılan Köy: " GridPane.rowIndex="1" />
+                                                            <ComboBox fx:id="_raid_targetvillage" maxWidth="1.7976931348623157E308" onAction="#updateVillage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                            <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Mesafe:" GridPane.rowIndex="2" />
+                                                            <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                               <children>
+                                                                  <TextField fx:id="_raid_mindistance" maxHeight="1.7976931348623157E308" promptText="(min)" />
+                                                                  <Label maxHeight="1.7976931348623157E308" text="-" />
+                                                                  <TextField fx:id="_raid_maxdistance" maxHeight="1.7976931348623157E308" promptText="(max)" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                               <children>
+                                                                  <TextField fx:id="_raid_mintotalpopulation" maxHeight="1.7976931348623157E308" promptText="(min)" />
+                                                                  <Label maxHeight="1.7976931348623157E308" text="-" />
+                                                                  <TextField fx:id="_raid_maxtotalpopulation" maxHeight="1.7976931348623157E308" promptText="(max)" />
+                                                               </children>
+                                                            </HBox>
+                                                            <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Toplam Nüfus:" GridPane.rowIndex="3" />
                                                          </children>
-                                                      </HBox>
-                                                      <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                                         <children>
-                                                            <TextField fx:id="_raid_mintotalpopulation" maxHeight="1.7976931348623157E308" promptText="(min)" />
-                                                            <Label maxHeight="1.7976931348623157E308" text="-" />
-                                                            <TextField fx:id="_raid_maxtotalpopulation" maxHeight="1.7976931348623157E308" promptText="(max)" />
-                                                         </children>
-                                                      </HBox>
-                                                      <Label alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Toplam Nüfus:" GridPane.rowIndex="3" />
+                                                      </GridPane>
+                                                      <CheckBox fx:id="_raid_onlynothavealliance" mnemonicParsing="false" text="Sadece bir birliksiz köyler" />
                                                    </children>
-                                                </GridPane>
+                                                </VBox>
                                                 <Separator orientation="VERTICAL">
                                                    <HBox.margin>
                                                       <Insets />
@@ -515,7 +520,7 @@
                                                       <HBox spacing="10.0">
                                                          <children>
                                                             <Label maxHeight="1.7976931348623157E308" text="Halk:" />
-                                                            <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="20.0" HBox.hgrow="ALWAYS">
+                                                            <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="36.0" HBox.hgrow="ALWAYS">
                                                                <children>
                                                                   <CheckBox fx:id="_raid_roman" maxHeight="1.7976931348623157E308" mnemonicParsing="false" selected="true">
                                                                      <graphic>
@@ -566,36 +571,152 @@
                                                             </HBox>
                                                          </children>
                                                       </HBox>
-                                                      <CheckBox fx:id="_raid_onlynothavealliance" mnemonicParsing="false" text="Sadece bir birliğe üye olmayan köyler " />
+                                                      <Separator prefWidth="200.0">
+                                                         <VBox.margin>
+                                                            <Insets bottom="3.0" top="3.0" />
+                                                         </VBox.margin>
+                                                      </Separator>
+                                                      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="15.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../img/roman.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../img/roman.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../img/roman.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../img/roman.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../img/roman.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="15.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../img/roman.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../img/roman.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../img/roman.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../img/roman.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../img/roman.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </HBox>
                                                       <HBox alignment="CENTER_LEFT" spacing="10.0">
                                                          <children>
-                                                            <Button fx:id="_raid_scanvillages" mnemonicParsing="false" onAction="#raidScanVillages" text="Köyleri Tara" />
+                                                            <Label fx:id="_raid_villagelist_status" maxHeight="1.7976931348623157E308" prefWidth="140.0" text="Taramaya hazır.">
+                                                               <font>
+                                                                  <Font name="System Italic" size="13.0" />
+                                                               </font>
+                                                            </Label>
                                                             <ProgressBar fx:id="_raid_scanvillagesbar" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
                                                          </children>
                                                       </HBox>
-                                                      <Label maxHeight="1.7976931348623157E308" text="Hiç köy seçilmedi">
-                                                         <font>
-                                                            <Font name="System Italic" size="13.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <Button defaultButton="true" disable="true" mnemonicParsing="false" text="Yağma Listesi Oluştur" />
+                                                      <HBox spacing="25.0">
+                                                         <children>
+                                                            <Button fx:id="_raid_scanvillages" mnemonicParsing="false" onAction="#raidScanVillages" text="Köyleri Tara" />
+                                                            <Button fx:id="_raid_villagelist_create" defaultButton="true" disable="true" mnemonicParsing="false" text="Yağma Listesi Oluştur" />
+                                                         </children>
+                                                      </HBox>
                                                    </children>
                                                 </VBox>
                                              </children>
                                           </HBox>
-                                          <TableView fx:id="_raid_villagelist" prefHeight="238.0" prefWidth="710.0" VBox.vgrow="ALWAYS">
+                                          <TableView fx:id="_raid_villagelist" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="710.0" styleClass="NonFocused" VBox.vgrow="ALWAYS">
                                             <columns>
-                                              <TableColumn fx:id="_raid_villagelist_name" maxWidth="1.7976931348623157E308" prefWidth="124.0" text="Köy" />
-                                              <TableColumn fx:id="_raid_villagelist_player" prefWidth="100.0" text="Oyuncu" />
+                                              <TableColumn fx:id="_raid_villagelist_name" maxWidth="1.7976931348623157E308" prefWidth="130.0" text="Köy" />
+                                              <TableColumn fx:id="_raid_villagelist_player" prefWidth="110.0" text="Oyuncu" />
                                                 <TableColumn fx:id="_raid_villagelist_population" prefWidth="70.0" text="Nüfus" />
-                                                <TableColumn fx:id="_raid_villagelist_totalpopulation" prefWidth="90.0" text="T. Nüfus" />
+                                                <TableColumn fx:id="_raid_villagelist_totalpopulation" prefWidth="85.0" text="T. Nüfus" />
                                                 <TableColumn fx:id="_raid_villagelist_distance" text="Mesafe" />
-                                                <TableColumn fx:id="_raid_villagelist_tribe" prefWidth="90.0" text="Halk" />
+                                                <TableColumn fx:id="_raid_villagelist_tribe" text="Halk" />
                                                 <TableColumn fx:id="_raid_villagelist_alliance" prefWidth="85.0" text="Birlik" />
-                                                <TableColumn fx:id="_raid_villagelist_coordinate" prefWidth="90.0" text="Koordinat" />
+                                                <TableColumn fx:id="_raid_villagelist_coordinate" prefWidth="100.0" text="Koordinat" />
                                             </columns>
                                              <VBox.margin>
-                                                <Insets bottom="-10.0" left="-10.0" right="-10.0" />
+                                                <Insets bottom="-15.0" left="-15.0" right="-15.0" />
                                              </VBox.margin>
                                           </TableView>
                                        </children>
