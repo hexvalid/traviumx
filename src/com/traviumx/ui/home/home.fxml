@@ -467,7 +467,61 @@
                      <content>
                         <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
-                            <Tab text="Yağmalayıcı" />
+                            <Tab text="Yağmalayıcı">
+                                 <content>
+                                    <VBox fillWidth="false" maxHeight="1.7976931348623157E308" spacing="15.0">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <children>
+                                          <GridPane alignment="CENTER" gridLinesVisible="true" prefWidth="500.0" VBox.vgrow="NEVER">
+                                            <columnConstraints>
+                                              <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
+                                              <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="80.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="26.0" valignment="CENTER" vgrow="NEVER" />
+                                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="26.0" valignment="CENTER" vgrow="NEVER" />
+                                            </rowConstraints>
+                                             <children>
+                                                <ImageView fx:id="_raid_t1_img1" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/units-roman.gif" />
+                                                   </image>
+                                                   <viewport>
+                                                      <Rectangle2D height="16.0" width="16.0" />
+                                                   </viewport>
+                                                </ImageView>
+                                                <Label text="00" GridPane.rowIndex="1" />
+                                                <ImageView fx:id="_raid_t1_img11" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                                   <image>
+                                                      <Image url="@../img/units-roman.gif" />
+                                                   </image>
+                                                   <viewport>
+                                                      <Rectangle2D height="16.0" width="16.0" />
+                                                   </viewport>
+                                                </ImageView>
+                                                <ImageView fx:id="_raid_t1_img111" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                                   <image>
+                                                      <Image url="@../img/units-roman.gif" />
+                                                   </image>
+                                                   <viewport>
+                                                      <Rectangle2D height="16.0" width="16.0" />
+                                                   </viewport>
+                                                </ImageView>
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </VBox>
+                                 </content></Tab>
                             <Tab text="Yağma Listesi Oluşturucu">
                                  <content>
                                     <VBox spacing="15.0">
@@ -606,12 +660,12 @@
                                                                         <Rectangle2D height="16.0" width="16.0" />
                                                                      </viewport>
                                                                   </ImageView>
-                                                                  <TextField fx:id="_raid_t1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                                  <TextField fx:id="_raid_newlist_t1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
                                                                </children>
                                                             </HBox>
                                                             <HBox alignment="CENTER_LEFT" spacing="5.0">
                                                                <children>
-                                                                  <ImageView fx:id="_raid_t2_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                                  <ImageView fx:id="_raid_newlist_t2_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
                                                                         <Image url="@../img/units-roman.gif" />
                                                                      </image>
@@ -622,12 +676,12 @@
                                                                         <Insets />
                                                                      </HBox.margin>
                                                                   </ImageView>
-                                                                  <TextField fx:id="_raid_t2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                                  <TextField fx:id="_raid_newlist_t2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
                                                                </children>
                                                             </HBox>
                                                             <HBox alignment="CENTER_LEFT" spacing="5.0">
                                                                <children>
-                                                                  <ImageView fx:id="_raid_t3_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                                  <ImageView fx:id="_raid_newlist_t3_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
                                                                         <Image url="@../img/units-roman.gif" />
                                                                      </image>
@@ -635,12 +689,12 @@
                                                                         <Rectangle2D height="16.0" minX="38.0" width="16.0" />
                                                                      </viewport>
                                                                   </ImageView>
-                                                                  <TextField fx:id="_raid_t3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                                  <TextField fx:id="_raid_newlist_t3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
                                                                </children>
                                                             </HBox>
                                                             <HBox alignment="CENTER_LEFT" spacing="5.0">
                                                                <children>
-                                                                  <ImageView fx:id="_raid_t4_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                                  <ImageView fx:id="_raid_newlist_t4_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
                                                                         <Image url="@../img/units-roman.gif" />
                                                                      </image>
@@ -648,12 +702,12 @@
                                                                         <Rectangle2D height="16.0" minX="57.0" width="16.0" />
                                                                      </viewport>
                                                                   </ImageView>
-                                                                  <TextField fx:id="_raid_t4" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                                  <TextField fx:id="_raid_newlist_t4" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
                                                                </children>
                                                             </HBox>
                                                             <HBox alignment="CENTER_LEFT" spacing="5.0">
                                                                <children>
-                                                                  <ImageView fx:id="_raid_t5_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                                  <ImageView fx:id="_raid_newlist_t5_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
                                                                         <Image url="@../img/units-roman.gif" />
                                                                      </image>
@@ -661,7 +715,7 @@
                                                                         <Rectangle2D height="16.0" minX="76.0" width="16.0" />
                                                                      </viewport>
                                                                   </ImageView>
-                                                                  <TextField fx:id="_raid_t5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                                  <TextField fx:id="_raid_newlist_t5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
                                                                </children>
                                                             </HBox>
                                                          </children>
@@ -670,7 +724,7 @@
                                                          <children>
                                                             <HBox alignment="CENTER_LEFT" spacing="5.0">
                                                                <children>
-                                                                  <ImageView fx:id="_raid_t6_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                                  <ImageView fx:id="_raid_newlist_t6_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
                                                                         <Image url="@../img/units-roman.gif" />
                                                                      </image>
@@ -678,12 +732,12 @@
                                                                         <Rectangle2D height="16.0" minX="95.0" width="16.0" />
                                                                      </viewport>
                                                                   </ImageView>
-                                                                  <TextField fx:id="_raid_t6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                                  <TextField fx:id="_raid_newlist_t6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
                                                                </children>
                                                             </HBox>
                                                             <HBox alignment="CENTER_LEFT" spacing="5.0">
                                                                <children>
-                                                                  <ImageView fx:id="_raid_t7_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                                  <ImageView fx:id="_raid_newlist_t7_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
                                                                         <Image url="@../img/units-roman.gif" />
                                                                      </image>
@@ -691,12 +745,12 @@
                                                                         <Rectangle2D height="16.0" minX="114.0" width="16.0" />
                                                                      </viewport>
                                                                   </ImageView>
-                                                                  <TextField fx:id="_raid_t7" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                                  <TextField fx:id="_raid_newlist_t7" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
                                                                </children>
                                                             </HBox>
                                                             <HBox alignment="CENTER_LEFT" spacing="5.0">
                                                                <children>
-                                                                  <ImageView fx:id="_raid_t8_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                                  <ImageView fx:id="_raid_newlist_t8_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
                                                                         <Image url="@../img/units-roman.gif" />
                                                                      </image>
@@ -704,12 +758,12 @@
                                                                         <Rectangle2D height="16.0" minX="133.0" width="16.0" />
                                                                      </viewport>
                                                                   </ImageView>
-                                                                  <TextField fx:id="_raid_t8" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                                  <TextField fx:id="_raid_newlist_t8" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
                                                                </children>
                                                             </HBox>
                                                             <HBox alignment="CENTER_LEFT" spacing="5.0">
                                                                <children>
-                                                                  <ImageView fx:id="_raid_t9_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                                  <ImageView fx:id="_raid_newlist_t9_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
                                                                         <Image url="@../img/units-roman.gif" />
                                                                      </image>
@@ -717,12 +771,12 @@
                                                                         <Rectangle2D height="16.0" minX="152.0" width="16.0" />
                                                                      </viewport>
                                                                   </ImageView>
-                                                                  <TextField fx:id="_raid_t9" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                                  <TextField fx:id="_raid_newlist_t9" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
                                                                </children>
                                                             </HBox>
                                                             <HBox alignment="CENTER_LEFT" spacing="5.0">
                                                                <children>
-                                                                  <ImageView fx:id="_raid_t10_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                                  <ImageView fx:id="_raid_newlist_t10_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
                                                                         <Image url="@../img/units-roman.gif" />
                                                                      </image>
@@ -733,7 +787,7 @@
                                                                         <Rectangle2D height="16.0" minX="171.0" width="16.0" />
                                                                      </viewport>
                                                                   </ImageView>
-                                                                  <TextField fx:id="_raid_t10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
+                                                                  <TextField fx:id="_raid_newlist_t10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="0" />
                                                                </children>
                                                             </HBox>
                                                          </children>
@@ -794,7 +848,7 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                      </content>
                   </Tab>
-                  <Tab closable="false" disable="true" text="Hesap Ayarları">
+                  <Tab closable="false" disable="true" text="Ayarlar">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                      </content>

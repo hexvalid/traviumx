@@ -213,61 +213,61 @@ public class HomeController {
     private ImageView _raid_t1_img;
 
     @FXML
-    private TextField _raid_t1;
+    private TextField _raid_newlist_t1;
 
     @FXML
-    private ImageView _raid_t2_img;
+    private ImageView _raid_newlist_t2_img;
 
     @FXML
-    private TextField _raid_t2;
+    private TextField _raid_newlist_t2;
 
     @FXML
-    private ImageView _raid_t3_img;
+    private ImageView _raid_newlist_t3_img;
 
     @FXML
-    private TextField _raid_t3;
+    private TextField _raid_newlist_t3;
 
     @FXML
-    private ImageView _raid_t4_img;
+    private ImageView _raid_newlist_t4_img;
 
     @FXML
-    private TextField _raid_t4;
+    private TextField _raid_newlist_t4;
 
     @FXML
-    private ImageView _raid_t5_img;
+    private ImageView _raid_newlist_t5_img;
 
     @FXML
-    private TextField _raid_t5;
+    private TextField _raid_newlist_t5;
 
     @FXML
-    private ImageView _raid_t6_img;
+    private ImageView _raid_newlist_t6_img;
 
     @FXML
-    private TextField _raid_t6;
+    private TextField _raid_newlist_t6;
 
     @FXML
-    private ImageView _raid_t7_img;
+    private ImageView _raid_newlist_t7_img;
 
     @FXML
-    private TextField _raid_t7;
+    private TextField _raid_newlist_t7;
 
     @FXML
-    private ImageView _raid_t8_img;
+    private ImageView _raid_newlist_t8_img;
 
     @FXML
-    private TextField _raid_t8;
+    private TextField _raid_newlist_t8;
 
     @FXML
-    private ImageView _raid_t9_img;
+    private ImageView _raid_newlist_t9_img;
 
     @FXML
-    private TextField _raid_t9;
+    private TextField _raid_newlist_t9;
 
     @FXML
-    private ImageView _raid_t10_img;
+    private ImageView _raid_newlist_t10_img;
 
     @FXML
-    private TextField _raid_t10;
+    private TextField _raid_newlist_t10;
 
 
     @FXML
@@ -412,15 +412,15 @@ public class HomeController {
             updateVillage();
             Image unitsImage = new Image(getClass().getResourceAsStream("/com/traviumx/ui/img/units-" + a.Tribe + ".gif"));
             _raid_t1_img.setImage(unitsImage);
-            _raid_t2_img.setImage(unitsImage);
-            _raid_t3_img.setImage(unitsImage);
-            _raid_t4_img.setImage(unitsImage);
-            _raid_t5_img.setImage(unitsImage);
-            _raid_t6_img.setImage(unitsImage);
-            _raid_t7_img.setImage(unitsImage);
-            _raid_t8_img.setImage(unitsImage);
-            _raid_t9_img.setImage(unitsImage);
-            _raid_t10_img.setImage(unitsImage);
+            _raid_newlist_t2_img.setImage(unitsImage);
+            _raid_newlist_t3_img.setImage(unitsImage);
+            _raid_newlist_t4_img.setImage(unitsImage);
+            _raid_newlist_t5_img.setImage(unitsImage);
+            _raid_newlist_t6_img.setImage(unitsImage);
+            _raid_newlist_t7_img.setImage(unitsImage);
+            _raid_newlist_t8_img.setImage(unitsImage);
+            _raid_newlist_t9_img.setImage(unitsImage);
+            _raid_newlist_t10_img.setImage(unitsImage);
         } catch (IOException e) {
             e.printStackTrace();
         }
