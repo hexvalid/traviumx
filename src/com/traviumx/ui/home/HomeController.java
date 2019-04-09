@@ -25,6 +25,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class HomeController {
     @FXML
@@ -208,6 +209,66 @@ public class HomeController {
     @FXML
     private Button _raid_villagelist_create;
 
+    @FXML
+    private ImageView _raid_t1_img;
+
+    @FXML
+    private TextField _raid_t1;
+
+    @FXML
+    private ImageView _raid_t2_img;
+
+    @FXML
+    private TextField _raid_t2;
+
+    @FXML
+    private ImageView _raid_t3_img;
+
+    @FXML
+    private TextField _raid_t3;
+
+    @FXML
+    private ImageView _raid_t4_img;
+
+    @FXML
+    private TextField _raid_t4;
+
+    @FXML
+    private ImageView _raid_t5_img;
+
+    @FXML
+    private TextField _raid_t5;
+
+    @FXML
+    private ImageView _raid_t6_img;
+
+    @FXML
+    private TextField _raid_t6;
+
+    @FXML
+    private ImageView _raid_t7_img;
+
+    @FXML
+    private TextField _raid_t7;
+
+    @FXML
+    private ImageView _raid_t8_img;
+
+    @FXML
+    private TextField _raid_t8;
+
+    @FXML
+    private ImageView _raid_t9_img;
+
+    @FXML
+    private TextField _raid_t9;
+
+    @FXML
+    private ImageView _raid_t10_img;
+
+    @FXML
+    private TextField _raid_t10;
+
 
     @FXML
     protected void initialize() {
@@ -349,7 +410,17 @@ public class HomeController {
             }
 
             updateVillage();
-
+            Image unitsImage = new Image(getClass().getResourceAsStream("/com/traviumx/ui/img/units-" + a.Tribe + ".gif"));
+            _raid_t1_img.setImage(unitsImage);
+            _raid_t2_img.setImage(unitsImage);
+            _raid_t3_img.setImage(unitsImage);
+            _raid_t4_img.setImage(unitsImage);
+            _raid_t5_img.setImage(unitsImage);
+            _raid_t6_img.setImage(unitsImage);
+            _raid_t7_img.setImage(unitsImage);
+            _raid_t8_img.setImage(unitsImage);
+            _raid_t9_img.setImage(unitsImage);
+            _raid_t10_img.setImage(unitsImage);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -468,9 +539,18 @@ public class HomeController {
             _raid_villagelist.setDisable(false);
             _raid_scanvillagesbar.setVisible(false);
             _raid_scanvillagesbar.setProgress(0);
-//todo : task.setOnFailed ??
+            //todo : task.setOnFailed ??
         });
+    }
+
+    @FXML
+    public void raidCreateList() {
 
 
+        List<Raid.TargetVillage> list = _raid_villagelist.getSelectionModel().getSelectedItems();
+
+        for (Raid.TargetVillage tv : list) {
+            System.out.println(tv.getName());
+        }
     }
 }
