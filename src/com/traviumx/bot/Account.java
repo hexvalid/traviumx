@@ -382,6 +382,11 @@ public class Account {
             v.freecrop = Parser.ParseDotty(doc.select("#stockBarFreeCrop.value").first().text());
             v.freecropTooltip = doc.select("#stockBarFreeCropWrapper.stockBarButton a").first().attr("title"); //todo: html kodunu ayıkla, son satırı sil
 
+            get = new HttpGet(gameWorld.getUrl() + "build.php" + "?newdid=" + v.id + "&gid=16&tt=1");
+            doc = Jsoup.parse(executeRequest(get));
+
+
+//            https://ts20.travian.com.tr/build.php?newdid=12107
         }
 
 
