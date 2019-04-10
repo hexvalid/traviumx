@@ -386,6 +386,22 @@ public class Account {
             doc = Jsoup.parse(executeRequest(get));
 
 
+            //todo: tüm binaların bilgileri builder için zaten object olarak düzgün bir şekilde
+            //todo: alınacak. burada ki 'askeri üst var mı?' koşulu ise oradaki object ile olacak.
+            if (doc.select(".contentContainer .titleInHeader").size() > 0) {
+                Elements troops = doc.select(".troop_details:not(.outRaid) .units.last td.unit");
+                v.t1 = Integer.valueOf(troops.get(0).text());
+                v.t2 = Integer.valueOf(troops.get(1).text());
+                v.t3 = Integer.valueOf(troops.get(2).text());
+                v.t4 = Integer.valueOf(troops.get(3).text());
+                v.t5 = Integer.valueOf(troops.get(4).text());
+                v.t6 = Integer.valueOf(troops.get(5).text());
+                v.t7 = Integer.valueOf(troops.get(6).text());
+                v.t8 = Integer.valueOf(troops.get(7).text());
+                v.t9 = Integer.valueOf(troops.get(8).text());
+                v.t10 = Integer.valueOf(troops.get(9).text());
+            }
+
 //            https://ts20.travian.com.tr/build.php?newdid=12107
         }
 

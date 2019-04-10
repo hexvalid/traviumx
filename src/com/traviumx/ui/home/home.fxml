@@ -492,7 +492,7 @@
                                               <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="26.0" valignment="CENTER" vgrow="NEVER" />
                                             </rowConstraints>
                                              <children>
-                                                <ImageView fx:id="_raid_t1_img1" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="_raid_t1_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../img/units-roman.gif" />
                                                    </image>
@@ -500,23 +500,88 @@
                                                       <Rectangle2D height="16.0" width="16.0" />
                                                    </viewport>
                                                 </ImageView>
-                                                <Label text="00" GridPane.rowIndex="1" />
-                                                <ImageView fx:id="_raid_t1_img11" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                                <Label fx:id="_raid_t1" text="00" GridPane.rowIndex="1" />
+                                                <ImageView fx:id="_raid_t2_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                                                    <image>
                                                       <Image url="@../img/units-roman.gif" />
                                                    </image>
                                                    <viewport>
-                                                      <Rectangle2D height="16.0" width="16.0" />
+                                                      <Rectangle2D height="16.0" minX="19.0" width="16.0" />
                                                    </viewport>
                                                 </ImageView>
-                                                <ImageView fx:id="_raid_t1_img111" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                                <Label fx:id="_raid_t2" text="00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <ImageView fx:id="_raid_t3_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                                                    <image>
                                                       <Image url="@../img/units-roman.gif" />
                                                    </image>
                                                    <viewport>
-                                                      <Rectangle2D height="16.0" width="16.0" />
+                                                      <Rectangle2D height="16.0" minX="38.0" width="16.0" />
                                                    </viewport>
                                                 </ImageView>
+                                                <Label fx:id="_raid_t3" text="00" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <ImageView fx:id="_raid_t4_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                                                   <image>
+                                                      <Image url="@../img/units-roman.gif" />
+                                                   </image>
+                                                   <viewport>
+                                                      <Rectangle2D height="16.0" minX="57.0" width="16.0" />
+                                                   </viewport>
+                                                </ImageView>
+                                                <Label fx:id="_raid_t4" text="00" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                                <ImageView fx:id="_raid_t5_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                                                   <image>
+                                                      <Image url="@../img/units-roman.gif" />
+                                                   </image>
+                                                   <viewport>
+                                                      <Rectangle2D height="16.0" minX="76.0" width="16.0" />
+                                                   </viewport>
+                                                </ImageView>
+                                                <Label fx:id="_raid_t5" text="00" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                                <ImageView fx:id="_raid_t6_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5">
+                                                   <image>
+                                                      <Image url="@../img/units-roman.gif" />
+                                                   </image>
+                                                   <viewport>
+                                                      <Rectangle2D height="16.0" minX="95.0" width="16.0" />
+                                                   </viewport>
+                                                </ImageView>
+                                                <Label fx:id="_raid_t6" text="00" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                                <ImageView fx:id="_raid_t7_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6">
+                                                   <image>
+                                                      <Image url="@../img/units-roman.gif" />
+                                                   </image>
+                                                   <viewport>
+                                                      <Rectangle2D height="16.0" minX="114.0" width="16.0" />
+                                                   </viewport>
+                                                </ImageView>
+                                                <Label fx:id="_raid_t7" text="00" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                                                <ImageView fx:id="_raid_t8_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7">
+                                                   <image>
+                                                      <Image url="@../img/units-roman.gif" />
+                                                   </image>
+                                                   <viewport>
+                                                      <Rectangle2D height="16.0" minX="133.0" width="16.0" />
+                                                   </viewport>
+                                                </ImageView>
+                                                <Label fx:id="_raid_t8" text="00" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                                                <ImageView fx:id="_raid_t9_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8">
+                                                   <image>
+                                                      <Image url="@../img/units-roman.gif" />
+                                                   </image>
+                                                   <viewport>
+                                                      <Rectangle2D height="16.0" minX="152.0" width="16.0" />
+                                                   </viewport>
+                                                </ImageView>
+                                                <Label fx:id="_raid_t9" text="00" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                                                <ImageView fx:id="_raid_t10_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9">
+                                                   <image>
+                                                      <Image url="@../img/units-roman.gif" />
+                                                   </image>
+                                                   <viewport>
+                                                      <Rectangle2D height="16.0" minX="171.0" width="16.0" />
+                                                   </viewport>
+                                                </ImageView>
+                                                <Label fx:id="_raid_t10" text="00" GridPane.columnIndex="9" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                        </children>
@@ -652,7 +717,7 @@
                                                          <children>
                                                             <HBox alignment="CENTER_LEFT" spacing="5.0">
                                                                <children>
-                                                                  <ImageView fx:id="_raid_t1_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                                  <ImageView fx:id="_raid_newlist_t1_img" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                                                      <image>
                                                                         <Image url="@../img/units-roman.gif" />
                                                                      </image>

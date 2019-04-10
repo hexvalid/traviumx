@@ -210,7 +210,7 @@ public class HomeController {
     private Button _raid_villagelist_create;
 
     @FXML
-    private ImageView _raid_t1_img;
+    private ImageView _raid_newlist_t1_img;
 
     @FXML
     private TextField _raid_newlist_t1;
@@ -268,6 +268,66 @@ public class HomeController {
 
     @FXML
     private TextField _raid_newlist_t10;
+
+    @FXML
+    private ImageView _raid_t1_img;
+
+    @FXML
+    private Label _raid_t1;
+
+    @FXML
+    private ImageView _raid_t2_img;
+
+    @FXML
+    private Label _raid_t2;
+
+    @FXML
+    private ImageView _raid_t3_img;
+
+    @FXML
+    private Label _raid_t3;
+
+    @FXML
+    private ImageView _raid_t4_img;
+
+    @FXML
+    private Label _raid_t4;
+
+    @FXML
+    private ImageView _raid_t5_img;
+
+    @FXML
+    private Label _raid_t5;
+
+    @FXML
+    private ImageView _raid_t6_img;
+
+    @FXML
+    private Label _raid_t6;
+
+    @FXML
+    private ImageView _raid_t7_img;
+
+    @FXML
+    private Label _raid_t7;
+
+    @FXML
+    private ImageView _raid_t8_img;
+
+    @FXML
+    private Label _raid_t8;
+
+    @FXML
+    private ImageView _raid_t9_img;
+
+    @FXML
+    private Label _raid_t9;
+
+    @FXML
+    private ImageView _raid_t10_img;
+
+    @FXML
+    private Label _raid_t10;
 
 
     @FXML
@@ -478,6 +538,18 @@ public class HomeController {
         //TODO: YAĞMA LİSTESİ İNİT.
 
         //TODO: yağma listesi için gold üyelik ve askeri üst olması gerek
+
+        _raid_t1.setText(String.valueOf(v.t1));
+        _raid_t2.setText(String.valueOf(v.t2));
+        _raid_t3.setText(String.valueOf(v.t3));
+        _raid_t4.setText(String.valueOf(v.t4));
+        _raid_t5.setText(String.valueOf(v.t5));
+        _raid_t6.setText(String.valueOf(v.t6));
+        _raid_t7.setText(String.valueOf(v.t7));
+        _raid_t8.setText(String.valueOf(v.t8));
+        _raid_t9.setText(String.valueOf(v.t9));
+        _raid_t10.setText(String.valueOf(v.t10));
+
     }
 
 
