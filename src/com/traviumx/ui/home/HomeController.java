@@ -19,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -329,6 +330,9 @@ public class HomeController {
     @FXML
     private Label _raid_t10;
 
+    @FXML
+    private VBox _test_vbox;
+
 
     @FXML
     protected void initialize() {
@@ -484,6 +488,8 @@ public class HomeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
 
