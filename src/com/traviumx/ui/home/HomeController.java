@@ -581,7 +581,7 @@ public class HomeController {
 
         Task task = Raid.GetTargetVillages(
                 _accountList.getSelectionModel().getSelectedItem(),
-                _villageList.getSelectionModel().getSelectedItem(),
+                _raid_targetvillage.getSelectionModel().getSelectedItem(),
                 Double.valueOf(_raid_mindistance.getText()),
                 Double.valueOf(_raid_maxdistance.getText()),
                 Integer.valueOf(_raid_mintotalpopulation.getText()),
@@ -630,5 +630,7 @@ public class HomeController {
         for (Raid.TargetVillage tv : list) {
             System.out.println(tv.getName());
         }
+
+        //todo:
     }
 }

@@ -389,6 +389,8 @@ public class Account {
             //todo: tüm binaların bilgileri builder için zaten object olarak düzgün bir şekilde
             //todo: alınacak. burada ki 'askeri üst var mı?' koşulu ise oradaki object ile olacak.
             if (doc.select(".contentContainer .titleInHeader").size() > 0) {
+
+                //todo: raidlist ajax isteği ile de bu bilgileri almak mümkün
                 Elements troops = doc.select(".troop_details:not(.outRaid):not(.outHero) .units.last td.unit");
                 v.t1 = Integer.valueOf(troops.get(0).text());
                 v.t2 = Integer.valueOf(troops.get(1).text());

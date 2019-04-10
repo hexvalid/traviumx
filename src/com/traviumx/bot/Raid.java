@@ -25,6 +25,13 @@ import java.util.List;
 
 //Todo: burası ap ayrı bir paket olacak, bunun classları birbirinden ayrılacak bu şekilde olmayacak...
 public class Raid {
+
+    public static class RaidList {
+        public String id;
+        public String name;
+
+    }
+
     public static class TargetVillage {
         private SimpleStringProperty name;
         private SimpleStringProperty player;
