@@ -9,8 +9,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.jsoup.Jsoup;
@@ -29,7 +29,14 @@ public class Raid {
     public static class RaidList {
         public String id;
         public String name;
-
+        public String desc;
+        public FXMLLoader loader;
+        public TitledPane _pane;
+        public TextField _wait_min;
+        public TextField _wait_max;
+        public Button _start;
+        public Label _name;
+        public Label _desc;
     }
 
     public static class TargetVillage {

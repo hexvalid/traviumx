@@ -4,11 +4,14 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.traviumx.ui.home.HomeController;
 import com.traviumx.utils.AntiCaptcha;
 import com.traviumx.utils.Database;
 import com.traviumx.utils.Parser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpHeaders;
@@ -66,6 +69,8 @@ public class Account {
     public double Experience;
     public String ExperienceTooltip;
     public ObservableList<Village> Villages;
+
+    public List<Raid.RaidList> RaidLists;
 
     private static class Config {
         private String test;
@@ -155,6 +160,7 @@ public class Account {
             e.printStackTrace();
         }
         this.Villages = FXCollections.observableList(new ArrayList<>());
+        this.RaidLists= new ArrayList<>();
     }
 
     public String executeRequest(HttpRequestBase request) throws IOException {
@@ -409,8 +415,39 @@ public class Account {
 
 
         System.out.println("ok? ");
+        LoadRaidLists();
+    }
+
+    public void LoadRaidLists() throws IOException {
+        //todo: check plus account?
+        HttpRequestBase get = new HttpGet(gameWorld.getUrl() + "build.php" + "?gid=16&tt=99");
+        Document doc = Jsoup.parse(executeRequest(get));
+
+        Elements lists = doc.select(".listEntry");
+        for (Element e : lists) {
+            String id = e.select("input[name=lid]").first().val();
+            System.out.println();
+            System.out.println(e.select(".raidListSlotCount").first().text());
 
 
+            boolean alreadyExist = false;
+            for (Raid.RaidList rl : RaidLists) {
+                if (rl.id.equals(id)) {
+                    alreadyExist = true;
+                    break;
+                }
+            }
+
+            if (!alreadyExist) {
+                Raid.RaidList rl = new Raid.RaidList();
+                rl.id = id;
+                rl.name = e.select(".listTitleText").first().text();
+                rl.desc = e.select(".raidListSlotCount").first().text();
+                this.RaidLists.add(rl);
+            }
+
+
+        }
     }
 
 }

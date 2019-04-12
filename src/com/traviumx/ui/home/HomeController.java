@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -364,6 +365,7 @@ public class HomeController {
 
         updateAccountList();
 
+
     }
 
     @FXML
@@ -485,11 +487,37 @@ public class HomeController {
             _raid_newlist_t8_img.setImage(unitsImage);
             _raid_newlist_t9_img.setImage(unitsImage);
             _raid_newlist_t10_img.setImage(unitsImage);
+            updateRaidLists();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
+
+
+
+         /*   Label foo = (Label) loader.getNamespace().get("_l1");
+            foo.setText("dsfsadfsadfas");*/
+
+    }
+
+    public void updateRaidLists() throws IOException {
+        for (Raid.RaidList rl : _accountList.getSelectionModel().getSelectedItem().RaidLists) {
+            if (rl._pane == null) {
+                rl.loader = new FXMLLoader();
+                rl.loader.setLocation(HomeController.class.getResource("button.fxml"));
+                rl._pane = rl.loader.load();
+                rl._name = (Label) rl.loader.getNamespace().get("_name");
+                rl._desc = (Label) rl.loader.getNamespace().get("_desc");
+                rl._wait_min = (TextField) rl.loader.getNamespace().get("_wait_min");
+                rl._wait_max = (TextField) rl.loader.getNamespace().get("_wait_max");
+                rl._start = (Button) rl.loader.getNamespace().get("_start");
+                rl._name.setText(rl.name);
+                rl._desc.setText(rl.desc);
+                _test_vbox.getChildren().add(rl._pane);
+            }
+        }
     }
 
 
@@ -631,6 +659,6 @@ public class HomeController {
             System.out.println(tv.getName());
         }
 
-        //todo:
+        //todo: burada kaldım
     }
 }
